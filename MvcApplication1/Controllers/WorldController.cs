@@ -1,4 +1,5 @@
 ﻿using MvcApplication1.Models;
+using MvcApplication1.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,22 +11,16 @@ namespace MvcApplication1.Controllers
 {
     public class WorldController : ApiController
     {
+        private WorldRepository worldRepository;
+
+        public WorldController()
+        {
+            this.worldRepository = new WorldRepository();
+        }
 
         public World[] Get()
         {
-            return new World[]
-            {
-                new World
-                {
-                    Id = 1,
-                    Name = "The First World"
-                },
-                new World
-                {
-                    Id = 2,
-                    Name = "The Second World"
-                }
-            };
+            return worldRepository.GetAllContacts();
         }
 
     }
